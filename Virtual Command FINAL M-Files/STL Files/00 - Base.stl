@@ -1,0 +1,86 @@
+solid MYSOLID created by IVCON, original data in robot0.stlb
+  facet normal 0.000000 0.000000 -1.000000
+    outer loop
+      vertex 0.731852 -1.801813 0.009130
+      vertex -0.731852 -1.801812 0.009130
+      vertex -0.731852 0.400717 0.009130
+    endloop
+  endfacet
+  facet normal 0.000000 0.000000 -1.000000
+    outer loop
+      vertex 0.731852 -1.801813 0.009130
+      vertex -0.731852 0.400717 0.009130
+      vertex 0.731852 0.400717 0.009130
+    endloop
+  endfacet
+  facet normal 0.000000 0.000000 1.000000
+    outer loop
+      vertex -0.731852 -1.801812 0.315383
+      vertex 0.731852 -1.801813 0.315383
+      vertex 0.731852 0.400717 0.315383
+    endloop
+  endfacet
+  facet normal 0.000000 0.000000 1.000000
+    outer loop
+      vertex -0.731852 -1.801812 0.315383
+      vertex 0.731852 0.400717 0.315383
+      vertex -0.731852 0.400717 0.315383
+    endloop
+  endfacet
+  facet normal 1.000000 0.000000 0.000001
+    outer loop
+      vertex 0.731852 -1.801813 0.315383
+      vertex 0.731852 -1.801813 0.009130
+      vertex 0.731852 0.400717 0.009130
+    endloop
+  endfacet
+  facet normal 1.000000 -0.000000 -0.000001
+    outer loop
+      vertex 0.731852 -1.801813 0.315383
+      vertex 0.731852 0.400717 0.009130
+      vertex 0.731852 0.400717 0.315383
+    endloop
+  endfacet
+  facet normal -1.000000 0.000000 -0.000001
+    outer loop
+      vertex -0.731852 0.400717 0.315383
+      vertex -0.731852 0.400717 0.009130
+      vertex -0.731852 -1.801812 0.009130
+    endloop
+  endfacet
+  facet normal -1.000000 0.000000 -0.000001
+    outer loop
+      vertex -0.731852 0.400717 0.315383
+      vertex -0.731852 -1.801812 0.009130
+      vertex -0.731852 -1.801812 0.315383
+    endloop
+  endfacet
+  facet normal -0.000001 -1.000000 -0.000002
+    outer loop
+      vertex 0.731852 -1.801813 0.009130
+      vertex 0.731852 -1.801813 0.315383
+      vertex -0.731852 -1.801812 0.315383
+    endloop
+  endfacet
+  facet normal -0.000000 -1.000000 0.000000
+    outer loop
+      vertex 0.731852 -1.801813 0.009130
+      vertex -0.731852 -1.801812 0.315383
+      vertex -0.731852 -1.801812 0.009130
+    endloop
+  endfacet
+  facet normal 0.000000 1.000000 0.000001
+    outer loop
+      vertex -0.731852 0.400717 0.009130
+      vertex -0.731852 0.400717 0.315383
+      vertex 0.731852 0.400717 0.315383
+    endloop
+  endfacet
+  facet normal 0.000000 1.000000 0.000002
+    outer loop
+      vertex -0.731852 0.400717 0.009130
+      vertex 0.731852 0.400717 0.315383
+      vertex 0.731852 0.400717 0.009130
+    endloop
+  endfacet
+endsolid MYSOLID

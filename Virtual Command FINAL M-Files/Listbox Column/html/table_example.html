@@ -1,0 +1,173 @@
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>HGTable Example</title>
+      <meta name="generator" content="MATLAB 7.1">
+      <meta name="date" content="2006-04-18">
+      <meta name="m-file" content="table_example"><style>
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows.  On Gecko-based browsers, the shrink-to-fit doesn't work. */ 
+p,h1,h2,div.content div {
+  /* for MATLAB's browser */
+  width: 600px;
+  /* for Mozilla, but the "width" tag overrides it anyway */
+  max-width: 600px;
+  /* for IE */
+  width:expression(document.body.clientWidth > 620 ? "600px": "auto" );
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h1>HGTable Example</h1>
+         <introduction>
+            <p>Uses the "hgtable" functions to display a multi-column list</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Create figure and list box</a></li>
+               <li><a href="#2">Create sample data from properties of list box</a></li>
+               <li><a href="#3">Display data in list box</a></li>
+               <li><a href="#4">Click and/or double-click items in the list to see the callbacks execute.</a></li>
+            </ul>
+         </div>
+         <h2>Create figure and list box<a name="1"></a></h2><pre class="codeinput">f = figure(<span class="string">'Name'</span>,<span class="string">'HGTable Example'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'off'</span>,<span class="string">'Visible'</span>,<span class="string">'off'</span>);
+b = uicontrol(<span class="string">'parent'</span>,f,<span class="string">'style'</span>,<span class="string">'listbox'</span>,<span class="keyword">...</span>
+    <span class="string">'Units'</span>,<span class="string">'Normalized'</span>,<span class="string">'Position'</span>,[0.1 0.1 0.8 0.8]);
+<span class="comment">% Create local anonymous functions for callbacks from the list.</span>
+opencb = @(src,evt) fprintf(1,<span class="string">'Item %d opened\n'</span>,evt);
+selectioncb = @(src,evt) fprintf(1,<span class="string">'Item %d selected\n'</span>,evt);
+<span class="comment">% Set the properties of the list box, including font, selection behaviour,</span>
+<span class="comment">% and callbacks.</span>
+tablesetup(b,selectioncb,opencb);
+</pre><h2>Create sample data from properties of list box<a name="2"></a></h2>
+         <p>Each column needs to be a cell array of strings.  We'll have columns for: property name, property data type, the size of the
+            value for that property, and lastly the value itself (if it is a string).
+         </p><pre class="codeinput">p = get(b);
+propnames = fieldnames(p);
+datatype = cell(size(propnames));
+datasize = cell(size(propnames));
+stringdata = cell(size(propnames));
+<span class="keyword">for</span> i=1:numel(propnames)
+    v = get(b,propnames{i});
+    datatype{i} = class(v);
+    s = size(v);
+    datasize{i} = sprintf(<span class="string">'%d*%d'</span>,s(1),s(2));
+    <span class="keyword">if</span> ischar(v)
+        stringdata{i} = v;
+    <span class="keyword">else</span>
+        stringdata{i} = <span class="string">'&lt;not a string&gt;'</span>;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><h2>Display data in list box<a name="3"></a></h2>
+         <p>The function "formattable" does everything for us.  We could, if necessary, format columns individually using "tablecolumn",
+            join them together using "tablestrings", and set that as the string for the list box.
+         </p><pre class="codeinput">formattable(b,{<span class="string">'Property Name'</span>,<span class="string">'Data Type'</span>,<span class="string">'Data Size'</span>,<span class="string">'Data'</span>},<span class="keyword">...</span>
+    propnames,datatype,datasize,stringdata);
+set(f,<span class="string">'Visible'</span>,<span class="string">'on'</span>);
+</pre><img vspace="5" hspace="5" src="table_example_01.png"> <h2>Click and/or double-click items in the list to see the callbacks execute.<a name="4"></a></h2>
+         <p class="footer"><br>
+            Published with MATLAB&reg; 7.1<br></p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% HGTable Example
+% Uses the "hgtable" functions to display a multi-column list
+%% Create figure and list box
+f = figure('Name','HGTable Example','NumberTitle','off','Visible','off');
+b = uicontrol('parent',f,'style','listbox',...
+    'Units','Normalized','Position',[0.1 0.1 0.8 0.8]);
+% Create local anonymous functions for callbacks from the list.
+opencb = @(src,evt) fprintf(1,'Item %d opened\n',evt);
+selectioncb = @(src,evt) fprintf(1,'Item %d selected\n',evt);
+% Set the properties of the list box, including font, selection behaviour,
+% and callbacks.
+tablesetup(b,selectioncb,opencb);
+
+%% Create sample data from properties of list box
+% Each column needs to be a cell array of strings.  We'll have columns
+% for: property name, property data type, the size of the value for that
+% property, and lastly the value itself (if it is a string).
+p = get(b);
+propnames = fieldnames(p);
+datatype = cell(size(propnames));
+datasize = cell(size(propnames));
+stringdata = cell(size(propnames));
+for i=1:numel(propnames)
+    v = get(b,propnames{i});
+    datatype{i} = class(v);
+    s = size(v);
+    datasize{i} = sprintf('%d*%d',s(1),s(2));
+    if ischar(v)
+        stringdata{i} = v;
+    else
+        stringdata{i} = '<not a string>';
+    end
+end
+
+%% Display data in list box
+% The function "formattable" does everything for us.  We could, if
+% necessary, format columns individually using "tablecolumn", join
+% them together using "tablestrings", and set that as the string for
+% the list box.
+formattable(b,{'Property Name','Data Type','Data Size','Data'},...
+    propnames,datatype,datasize,stringdata);
+set(f,'Visible','on');
+
+%% Click and/or double-click items in the list to see the callbacks execute.
+
+
+##### SOURCE END #####
+-->
+   </body>
+</html>
